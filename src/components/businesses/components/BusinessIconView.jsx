@@ -4,6 +4,7 @@ import { ProgressBar } from 'react-bootstrap';
 
 const progressBarStyle = {
     width: '100%',    
+    fontWeight: 'bold',
 }
 
 

@@ -7,6 +7,18 @@ import { Modal } from 'react-bootstrap';
 import { offlineTime, offlineIncome } from '../../functions/state/globalStateStorageManager'; 
 
 
+const titleStyle = {
+    textAlign: 'center',
+    fontSize: '50px',
+    fontWeight: 'bold',
+    width: '100%',
+}
+
+const textStyle = {
+    textAlign: 'center',
+    fontWeight: 'bold',
+}
+
 // Modal displaying money gained while offline 
 export default function MoneyGainedModal(props) { 
     const { show, handleClose } = props; 
@@ -24,14 +36,14 @@ export default function MoneyGainedModal(props) {
         >
 
             <Modal.Header closeButton>
-                <Modal.Title> Welcome Back! </Modal.Title>
+                <Modal.Title style={titleStyle}> Welcome Back! </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
 
-                <p> You were gone for {offlineTime} seconds </p>
+                <p style={textStyle}> You were gone for {offlineTime} seconds </p>
 
-                <p> In the meantime you earned ${offlineIncome} </p>
+                <p style={textStyle}> In the meantime you earned ${offlineIncome} </p>
 
             </Modal.Body>
 

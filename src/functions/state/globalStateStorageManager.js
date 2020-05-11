@@ -20,11 +20,12 @@ const initialState = {
 const storedStateData = JSON.parse( localStorage.getItem('state')); 
 const storedLastTime = localStorage.getItem('lastTime'); 
 
-export const startState = (storedStateData !== null) ? storedStateData.gameState : initialState;
+export var startState = (storedStateData !== null) ? storedStateData.gameState : initialState;
 
 export const offlineTime = (storedLastTime !== undefined) ? GetCurSeconds() - storedLastTime : 0; 
 export const offlineIncome = (storedLastTime !== undefined) ? GetOfflineIncome(offlineTime, startState.businesses, startState.unlockedManagers) : 0; 
 
+startState.money += offlineIncome; 
 
 // ===== ON APP CLOSED =====
 // Store Redux Global State 

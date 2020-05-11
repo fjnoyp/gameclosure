@@ -40,7 +40,8 @@ function ManagerModal(props) {
 
                 <h4 style={subTitleStyle}> Managers make life easier! </h4>
 
-                <p>Hire one to run your business for you.  Maximize efficiency for one easy payment!</p>
+                <p>Hire one to run your business for you.</p>  
+                <p>Maximize efficiency for one easy payment!</p>
 
                 <ListGroup>
                     {

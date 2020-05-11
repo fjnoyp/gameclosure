@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Row, Col, Badge, Button, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Button, ProgressBar } from 'react-bootstrap';
 
 
 
@@ -23,6 +23,7 @@ const timeStyle = {
     height: '100%', 
     backgroundColor: 'grey',
     textAlign: 'center',
+    whiteSpace: 'nowrap'
 }
 
 // props: 
@@ -107,13 +108,14 @@ export class MoneyCollectBar extends React.Component {
             <React.Fragment>
                 <Button
                     style={collectButtonStyle}
+                    
                     disabled={hasManager || (curTime > 0)}
                     onClick={onCollectClick}>
                     {label}
                 </Button>
 
                 <Row style={rowStyle}>
-                    <Col xs={7} style={rowStyle}>
+                    <Col xs={8} style={rowStyle}>
                         <ProgressBar
                             style={progressBarStyle}
                             variant={"success"}
@@ -121,7 +123,7 @@ export class MoneyCollectBar extends React.Component {
                             max={collectTime}
                         />
                      </Col>
-                     <Col xs={5} style={rowStyle}>
+                     <Col xs={4} style={rowStyle}>
                         <div style={timeStyle} variant="secondary"> {secondsLeft} </div>
                     </Col>
                 </Row>

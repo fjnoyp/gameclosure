@@ -2,12 +2,12 @@
 import React, { useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 
-import { offlineTime, offlineIncome } from '../functions/state/globalStateStorageManager'; 
+import { offlineTime, offlineIncome } from '../../functions/state/globalStateStorageManager'; 
 
 
 
 export default function MoneyGainedModal(props) { //show, handleClose) => (
-    const { handleClose } = props; 
+    const { show, handleClose } = props; 
 
     useEffect(() => {
         if(offlineTime < 10 || offlineIncome < 1) handleClose();     
@@ -15,7 +15,7 @@ export default function MoneyGainedModal(props) { //show, handleClose) => (
 
     return (
         <Modal 
-            show={true} 
+            show={show} 
             onHide={handleClose}
             centered
             size="lg"

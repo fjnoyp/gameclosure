@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
 
+const moneyStyle = {
+    color: 'white', 
+    fontSize: 50,
+}
+
 const mapStateToProps = (state) => {
     return { 
         money: state.gameState.money
@@ -12,7 +17,7 @@ function MoneyView(props) {
 
 
     return(
-        <h2> $ {money.toFixed(2)} </h2>   
+        <h1 style={moneyStyle}> $ {money.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </h1>   
     )
 }
 

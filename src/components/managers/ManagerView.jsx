@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Button, ListGroup } from 'react-bootstrap'; 
+import { Button, ListGroup } from 'react-bootstrap';
 
-import withManagerFunc from '../../functions/managers/withManagerFunc'; 
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// Custom Imports 
+import withManagerFunc from '../../functions/managers/withManagerFunc';
+import formatMoney from '../../functions/helper/formatMoney'; 
+import formatName from '../../functions/helper/formatName';
 
 
 const managerStyle = {
@@ -12,65 +13,54 @@ const managerStyle = {
     direction: 'row',
 }
 const iconViewStyle = {
-    marginTop: 'auto', 
-    marginBottom: 'auto', 
-    fontSize: '50px',    
+    width: '30%'
 }
 
 const midStyle = {
-    margin: 'auto'
+    marginLeft: '10px',
+    marginRight: 'auto',
+    marginTop: 'auto',
+    marginBottom: 'auto'
 }
 
 
 function ManagerView(props) {
 
-    const { isUnlocked, money, onHireClick, managerConfig } = props; 
-    const { name, description, faIcon, cost } = managerConfig; 
+    const { isUnlocked, money, onHireClick, managerConfig } = props;
+    const { name, description, cost, icon } = managerConfig;
 
-    //console.log(managerConfig); 
-    
-    const canBuy = (money >= cost); 
-  
-  return(
-    <ListGroup.Item>
+    const canBuy = (money >= cost);
 
-                    <div style={managerStyle}>
+    return (
+        <ListGroup.Item>
 
-                        <FontAwesomeIcon 
-                            style={iconViewStyle}
-                            icon={faIcon} />
+            <div style={managerStyle}>
 
-                        <div style={midStyle}>
+                <img
+                    style={iconViewStyle}
+                    src={icon}
+                    alt="business manager"
+                />
 
-                            <h4> {name} </h4>
-                            <p> {description} </p>
-                                <h5> {cost} </h5>
+                <div style={midStyle}>
+                    <h4> {formatName(name)} </h4>
+                    <p> {description} </p>
+                    <h5> {"$" + formatMoney(0,cost)} </h5>
+                </div>
 
+                <Button
+                    disabled={!canBuy || isUnlocked}
+                    onClick={onHireClick}
+                    variant={isUnlocked ? "danger" : "primary"}
+                >
+                    {isUnlocked && "Hired"}
+                    {!isUnlocked && "Hire!"}
+                </Button>
+                
+            </div>
 
-                        </div>
-
-                        
-                            <Button 
-                                disabled={!canBuy || isUnlocked} 
-                                onClick={onHireClick}
-                                variant={ isUnlocked ? "danger" : "primary"}
-                                > 
-
-                                { isUnlocked  && "Hired" } 
-                                { !isUnlocked && "Hire!" } 
-                            
-                            </Button>
-                        
-
-
-
-
-                    </div>
-
-                </ListGroup.Item>
-  )
-
-          
+        </ListGroup.Item>
+    )
 }
 
 export default withManagerFunc(ManagerView); 

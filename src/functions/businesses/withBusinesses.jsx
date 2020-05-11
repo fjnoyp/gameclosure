@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+
+// Custom Imports 
 import { updateMoney, upgradeBusiness } from '../state/globalStateManager'
 
+// Provide businesses info from Redux Global State
 
-
-// extract info related to this business based on prop id 
 function mapStateToProps(state, ownProps) {
   const { money, businesses, unlockedManagers } = state.gameState;
 

@@ -1,9 +1,15 @@
 import React from 'react';
+
 import { connect } from 'react-redux'; 
 
+// Custom Imports 
+import formatMoney from '../../functions/helper/formatMoney';
+
+
 const moneyStyle = {
+    margin: 'auto',
     color: 'white', 
-    fontSize: 50,
+    fontWeight: '800',
 }
 
 const mapStateToProps = (state) => {
@@ -12,12 +18,13 @@ const mapStateToProps = (state) => {
     }
 }
 
+// Displays current money 
 function MoneyView(props) {
     const { money } = props; 
 
 
     return(
-        <h1 style={moneyStyle}> $ {money.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </h1>   
+        <h2 style={moneyStyle}> $ {formatMoney(2,money)} </h2>   
     )
 }
 

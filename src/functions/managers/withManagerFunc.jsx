@@ -1,6 +1,7 @@
 import React from 'react';
-//import managersConfig from '../../functions/state/managersConfig';
 
+
+// Derive additional manager info/methods from managers in Redux Global State
 export default BaseComponent => ({ updateMoney, unlockManager, managerConfig, ...props }) => {
 
     const onHireClick = (cost) => {

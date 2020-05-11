@@ -4,7 +4,7 @@ import { store } from '../functions/state/globalStateManager'
 
 import { Provider } from 'react-redux'
 
-
+// Provide access to Redux Global State 
 export default BaseComponent => ({ ...props }) => {
 
     return(

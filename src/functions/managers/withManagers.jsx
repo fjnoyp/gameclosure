@@ -1,9 +1,9 @@
-
-
 import { connect } from 'react-redux';
 
+// Custom Imports 
 import { updateMoney, unlockManager } from '../state/globalStateManager'
 
+// Provide managers info from Redux Global State
 
 function mapStateToProps(state, ownProps) {
 
@@ -21,9 +21,6 @@ function mapDispatchToProps(dispatch, ownProps) {
         unlockManager: (id) => dispatch(unlockManager(id))
     };
 }
-
-
-
 
 export default connect(
     mapStateToProps, 

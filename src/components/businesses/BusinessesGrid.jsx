@@ -2,16 +2,12 @@ import React from 'react';
 
 import { CardColumns } from 'react-bootstrap'; 
 
-import businessesConfig from '../../functions/state/config/businessesConfig';
-
+// Custom Imports 
+import businessesConfig from '../../config/businessesConfig';
 import BusinessView from './BusinessView.jsx'; 
 import withBusinesses from '../../functions/businesses/withBusinesses';
 
-
-
-
-
-
+// Displays grid of all businesses 
 function BusinessesGrid(props){
 
   const { money, unlockedManagers, businesses } = props; 

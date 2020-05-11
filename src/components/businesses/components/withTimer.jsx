@@ -1,62 +1,84 @@
+import React from 'react';
 
-/*
+// HOC that provides Timer functionality to BaseComponent 
+export default function withTimer(BaseComponent) {
 
-Ideally this functionality would be in the 'functions' folder as 
-a ReactJS independent function. 
+    return class extends React.Component {
+        constructor(props) {
+            super(props);
 
-However, we use the HTML Dom Window object's "setTimeout" function 
-which makes this a web specific functionality 
+            this.state = {
+                curTime: 0,
+            }
 
-*/ 
-
-import React, { useRef, useState, useEffect } from 'react';
-
-
-export default BaseComponent => ({ autoCollect, collectTime, onCollected, ...props }) => {
-
-    const [curTime, setCurTime] = useState(0); 
-    const [timer, setTimer] = useState(undefined); 
-
-    const prevPropsRef = useRef(); 
-
-    useEffect( () => {
-        if(autoCollect && !prevPropsRef.autoCollect){
-                onCollectClick();     
+            this.onCollectClick = this.onCollectClick.bind(this);
+            this.onTimer = this.onTimer.bind(this);
         }
 
-        prevPropsRef.autoCollect = autoCollect; 
-    });
-
-    const onTimer = () => {
-        var newCurTime = curTime + .10;
-
-        if (newCurTime >= collectTime) {
-            clearTimeout( timer );
-            setCurTime(0); 
-            onCollected();
+        componentDidMount() {
+            const { autoCollect } = this.props;
 
             if (autoCollect) {
+                this.onCollectClick();
+            }
+        }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            const prevAutoCollect = prevProps.autoCollect;
+            const autoCollect = this.props.autoCollect;
+            const { onCollectClick } = this;
+
+
+            if (autoCollect && !prevAutoCollect) {
                 onCollectClick();
             }
         }
-        else {
-            setTimer(setTimeout( onTimer, 100));
-            setCurTime(newCurTime); 
+
+        onTimer() {
+            const { autoCollect, collectTime, onCollected } = this.props;
+            const { curTime } = this.state;
+            const { onCollectClick } = this;
+
+            var newCurTime = curTime + .10;
+
+
+            if (newCurTime >= collectTime) {
+                clearTimeout(this.timer);
+                this.setState({
+                    curTime: 0,
+                });
+                onCollected();
+
+                if (autoCollect) {
+                    onCollectClick();
+                }
+            }
+            else {
+                this.timer = setTimeout(this.onTimer, 100);
+                this.setState({
+                    curTime: newCurTime
+                });
+            }
+        }
+
+        onCollectClick() {
+            this.timer = setTimeout(this.onTimer, 100);
+            this.onTimer();
+        }
+
+        render() {
+            const { curTime } = this.state;
+            const { onCollectClick } = this;
+
+            return (
+                <BaseComponent
+                    curTime={curTime}
+                    onCollectClick={onCollectClick}
+
+                    {...this.props}
+                />
+            )
         }
     }
-
-    const onCollectClick = () => {
-        setTimer(setTimeout( onTimer, 100));
-        onTimer();
-    }
-
-    return(
-        <BaseComponent 
-            curTime={curTime}
-            onCollectClick={onCollectClick}
-            {...props}
-        />
-    )
-
 }
 

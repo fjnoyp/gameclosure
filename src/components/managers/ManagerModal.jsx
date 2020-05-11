@@ -1,53 +1,62 @@
-
 import React from 'react';
 import { ListGroup, Button, Modal } from 'react-bootstrap';
 
+// Custom Imports 
 import ManagerView from './ManagerView.jsx';
-
-import managersConfig from '../../functions/state/config/managersConfig';
-
-import withManagers from '../../functions/managers/withManagers'; 
+import managersConfig from '../../config/managersConfig';
+import withManagers from '../../functions/managers/withManagers';
 
 
-function ManagerModal(props) { //show, handleClose) => (
+const titleStyle = {
+    textAlign: 'center',
+    fontSize: '50px',
+    fontWeight: 'bold',
+    width: '100%',
+}
 
-    //console.log("managers modal: " ); 
-    //console.log(props); 
+const subTitleStyle = {
+    textAlign: 'center',
+}
 
-    const { show, handleClose } = props; 
+function ManagerModal(props) {
 
-    const { money, unlockedManagers } = props; 
+    // Input props 
+    const { show, handleClose } = props;
 
-    const { updateMoney, unlockManager } = props; 
+    // Props from HOC 
+    const { money, unlockedManagers } = props;
+
+    // Methods
+    const { updateMoney, unlockManager } = props;
 
     return (
         <Modal show={show} onHide={handleClose}>
 
             <Modal.Header closeButton>
-                <Modal.Title> Managers </Modal.Title>
+                <Modal.Title style={titleStyle}> Managers </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
 
-                <h4>Managers make life easier!</h4>
+                <h4 style={subTitleStyle}> Managers make life easier! </h4>
 
-                <p>Hire one to run your buiness for you, or to maximize efficiency, all for just one easy payment!  Salary schmalary!</p>
+                <p>Hire one to run your business for you.  Maximize efficiency for one easy payment!</p>
 
                 <ListGroup>
                     {
                         Object.keys(managersConfig).map(key => {
-                            return <ManagerView 
+                            return <ManagerView
                                 key={key}
 
                                 // manager info 
                                 isUnlocked={unlockedManagers[key]}
                                 money={money}
-                                managerConfig={managersConfig[key]} 
+                                managerConfig={managersConfig[key]}
 
                                 // methods
                                 updateMoney={updateMoney}
                                 unlockManager={() => unlockManager(key)}
-                                />
+                            />
                         })
                     }
 

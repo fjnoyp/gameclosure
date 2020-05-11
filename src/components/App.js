@@ -1,47 +1,46 @@
-//import './App.css'; 
-
 import React from 'react';
-import { Button, Nav, Navbar } from 'react-bootstrap';
 
-import BusinessesGrid from './businesses/BusinessesGrid.jsx'; 
-import MoneyView from './money/MoneyView.jsx'; 
+import { Button, Navbar } from 'react-bootstrap';
 
+// Custom Imports 
+import BusinessesGrid from './businesses/BusinessesGrid.jsx';
+import MoneyView from './money/MoneyView.jsx';
 
 import withGlobalState from './withGlobalState.jsx'
-import withManagerModal from './managers/withManagerModal.jsx'; 
-import withMoneyGainedModal from './money/withMoneyGainedModal.jsx'; 
+import withManagerModal from './managers/withManagerModal.jsx';
+import withMoneyGainedModal from './money/withMoneyGainedModal.jsx';
 
 
 
 
-const navbarStyle = {
-  background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(71,71,130,1) 100%, rgba(0,212,255,1) 100%)"
+const modalShowButtonStyle = {
+  fontSize: '14px',
 }
 
 function App(props) {
 
-    const { toggleManagerModalShow } = props; 
+  const { toggleManagerModalShow } = props;
 
   return (
-    
+
     <React.Fragment>
 
-      <Navbar bg="dark" variant="dark"> 
-        <Navbar.Brand>
-        <MoneyView/>
-        </Navbar.Brand>
+      <Navbar bg="dark" variant="dark">
 
-        <Button onClick={toggleManagerModalShow}> Managers </Button>
-        </Navbar>
+        <Button style={modalShowButtonStyle} onClick={toggleManagerModalShow}> Get Managers </Button>
 
-      <BusinessesGrid/>
-    
+        <MoneyView />
+
+      </Navbar>
+
+      <BusinessesGrid />
+
     </React.Fragment>
   );
-  
-  }
 
-export default withGlobalState( withMoneyGainedModal( withManagerModal(App))); 
+}
+
+export default withGlobalState(withMoneyGainedModal(withManagerModal(App)));
 
 
 

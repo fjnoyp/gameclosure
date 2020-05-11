@@ -1,4 +1,7 @@
+
+// Custom Imports 
 import businessesConfig from './businessesConfig.js'; 
+import formatMoney from '../functions/helper/formatMoney.js';
 
 var managersConfig = {}; 
 
@@ -6,14 +9,16 @@ function businessToManagerCost(business){
     return (business.startIncome * 500) + (business.upgradeIncome * 2000); 
 }
 
+// Below is the config for all managers + properties 
+// Auto generated from businessConfig 
 for( var key in businessesConfig ){
     const business = businessesConfig[key]; 
-    const { name, faIcon } = business; 
+    const { name, icon } = business; 
     
     managersConfig[key] = {
-        name: name + " manager",
-        description: "Runs your " + name + " business", 
-        faIcon: faIcon,
+        name: name + " Manager",
+        description: "Runs your " + name, 
+        icon: icon,
         cost: businessToManagerCost(business),
     }
 }

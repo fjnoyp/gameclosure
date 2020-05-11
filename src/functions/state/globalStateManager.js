@@ -4,15 +4,17 @@ import { combineReducers } from 'redux'
 
 import { configureStore } from '@reduxjs/toolkit'
 
+// Custom Imports 
 import { startState } from './globalStateStorageManager'; 
 
 
+// Redux Global State 
+// Use ReduxToolKit for management of businesses/managers unlock status 
 
-// Manage all unlocked stores 
 const gameStateSlice = createSlice({
   name: 'gameState',
   initialState: startState,
-  reducers: { // .actions 
+  reducers: { 
     
     // for add and remove money 
     updateMoney(state, action){
@@ -38,14 +40,12 @@ const gameStateSlice = createSlice({
         }
         else{
             businesses[id].level ++; 
-            //console.log(businesses[id].level); 
         }
 
     },
 
   }
 })
-
 
 
 export const { updateMoney, unlockManager, upgradeBusiness } = gameStateSlice.actions; 

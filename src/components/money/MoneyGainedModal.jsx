@@ -1,12 +1,14 @@
 
 import React, { useEffect } from 'react';
+
 import { Modal } from 'react-bootstrap';
 
+// Custom Imports 
 import { offlineTime, offlineIncome } from '../../functions/state/globalStateStorageManager'; 
 
 
-
-export default function MoneyGainedModal(props) { //show, handleClose) => (
+// Modal displaying money gained while offline 
+export default function MoneyGainedModal(props) { 
     const { show, handleClose } = props; 
 
     useEffect(() => {

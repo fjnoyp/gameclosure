@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import MoneyGainedModal from './MoneyGainedModal'; 
+import MoneyGainedModal from './MoneyGainedModal';
 
+// HOC that embeds MoneyGainedModal into BaseComponent and provides function to show/hide 
 export default BaseComponent => ({ ...props }) => {
 
-    const [showMoneyGainedModal, setShowMoneyGainedModal] = useState(true); 
-    
+    const [showMoneyGainedModal, setShowMoneyGainedModal] = useState(true);
 
-    return(
+
+    return (
         <React.Fragment>
 
-        <MoneyGainedModal show={showMoneyGainedModal} handleClose={() => setShowMoneyGainedModal(false)}/>
+            <MoneyGainedModal show={showMoneyGainedModal} handleClose={() => setShowMoneyGainedModal(false)} />
 
-        <BaseComponent 
-            {...props}
-        />
+            <BaseComponent
+                {...props}
+            />
 
         </React.Fragment>
     )

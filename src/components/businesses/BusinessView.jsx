@@ -1,5 +1,9 @@
 import React from 'react';
+
 import { Card, Container, Row, Col } from 'react-bootstrap';
+
+
+// Custom Imports 
 
 // HOC - data load 
 import withBusinessFunc from '../../functions/businesses/withBusinessFunc.jsx';
@@ -8,23 +12,23 @@ import withBusinessFunc from '../../functions/businesses/withBusinessFunc.jsx';
 import OpenBusinessButton from './components/OpenBusinessButton'; 
 import BusinessIconView from './components/BusinessIconView'; 
 import BusinessManagementView from './components/BusinessManagementView'; 
+import formatName from '../../functions/helper/formatName.js';
 
 
 const containerStyle = {
-    minHeight: '150px',
-    height: '15vh',
+    minHeight: '15vh',
+    padding: '10px', 
 }
 
 
 function BusinessView(props) {
 
     const { money, income, upgradeCost, hasManager, business } = props;
-    const { name, level, delay, faIcon } = business;
+    const { name, level, delay, icon } = business;
 
     const { onUpgradeClick, onCollected } = props; 
 
     const canBuy = (money >= upgradeCost); 
-
 
         return (
             <Card border="primary">
@@ -35,7 +39,7 @@ function BusinessView(props) {
 
                         <OpenBusinessButton
                             canBuy={canBuy}
-                            name={name}
+                            name={formatName(name)}
                             upgradeCost={upgradeCost}
                             onUpgradeClick={onUpgradeClick}
                         />
@@ -48,7 +52,7 @@ function BusinessView(props) {
                         <Col xs={4}>
                             <BusinessIconView
                                 level={level}
-                                faIcon={faIcon}
+                                icon={icon}
                             />
                         </Col>
 

@@ -1,16 +1,19 @@
 
-import businessesConfig, { GetIncome } from './config/businessesConfig'; 
+// Custom Imports
+import businessesConfig, { GetIncome } from '../../config/businessesConfig'; 
 
 import { store } from './globalStateManager'; 
 
 
-
-
+// Manage storage and retrieval of Redux Global State between app open/close via 'localStorage' object 
+// This code will need to be reworked to support cross platform (web + native) due to reliance on 'localStorage' 
 
 
 // ===== ON APP OPEN =====
+// Reload stored data 
+
 const initialState = { 
-    money: 100000, 
+    money: 10000, 
     businesses : GetInitialBusinessesState(), 
     unlockedManagers: {}
 }
@@ -24,6 +27,8 @@ export const offlineIncome = (storedLastTime !== undefined) ? GetOfflineIncome(o
 
 
 // ===== ON APP CLOSED =====
+// Store Redux Global State 
+
 window.onbeforeunload = function(){
     localStorage.setItem('state', JSON.stringify( store.getState() ) ); 
     localStorage.setItem('lastTime', GetCurSeconds() ); 
@@ -41,7 +46,7 @@ function GetOfflineIncome(offlineTime, businesses, unlockedManagers){
 
     for(var key in unlockedManagers){
 
-        // case where manager is unlocked before store 
+        // Case where manager is unlocked before store 
         if(businesses[key] !== undefined){
             const businessConfig = businessesConfig[key]; 
             const level = businesses[key].level; 

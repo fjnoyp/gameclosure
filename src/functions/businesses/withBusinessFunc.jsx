@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { GetIncome, GetUpgradeCost} from '../state/config/businessesConfig';
+// Custom Imports 
+import { GetIncome, GetUpgradeCost} from '../../config/businessesConfig'; 
 
-
+// Derive additional business info/methods from businesses in Redux Global State
 export default BaseComponent => ({ updateMoney, upgradeBusiness, business, ...props }) => {
 
     const onCollected = (income) => {
@@ -13,8 +14,8 @@ export default BaseComponent => ({ updateMoney, upgradeBusiness, business, ...pr
         upgradeBusiness(); 
     }
 
-    const income = GetIncome(business.level, business )
-    const upgradeCost = GetUpgradeCost(business.level, business )
+    const income =  GetIncome(business.level, business );
+    const upgradeCost = GetUpgradeCost(business.level, business ); 
 
     return(
         <BaseComponent 

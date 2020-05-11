@@ -4,37 +4,10 @@ import { ListGroup, Button, Modal } from 'react-bootstrap';
 
 import ManagerView from './ManagerView.jsx';
 
-import managersConfig from '../features/gameState/managersConfig';
+import managersConfig from '../../functions/state/config/managersConfig';
 
-import { connect } from 'react-redux';
+import withManagers from '../../functions/managers/withManagers'; 
 
-import { updateMoney, unlockManager } from '../features/gameState/businessesSlice'
-
-
-function mapStateToProps(state, ownProps) {
-
-    const { money, unlockedManagers } = state.gameState; 
-
-    return {
-        money: money, 
-        unlockedManagers: unlockedManagers
-    } 
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        updateMoney: (money) => dispatch(updateMoney(money)), 
-        unlockManager: (id) => dispatch(unlockManager(id))
-    };
-}
-
-const onHireClick = (id, props) => {
-    const { updateMoney, unlockManager } = props; 
-    const { cost } = managersConfig[id]; 
-
-    updateMoney(cost); 
-    unlockManager(id); 
-}
 
 function ManagerModal(props) { //show, handleClose) => (
 
@@ -44,6 +17,8 @@ function ManagerModal(props) { //show, handleClose) => (
     const { show, handleClose } = props; 
 
     const { money, unlockedManagers } = props; 
+
+    const { updateMoney, unlockManager } = props; 
 
     return (
         <Modal show={show} onHide={handleClose}>
@@ -63,10 +38,15 @@ function ManagerModal(props) { //show, handleClose) => (
                         Object.keys(managersConfig).map(key => {
                             return <ManagerView 
                                 key={key}
-                                isUnlocked={ unlockedManagers[key] }
-                                canBuy={ money >= managersConfig[key].cost}
-                                onHireClick={ () => {onHireClick(key, props) } } 
+
+                                // manager info 
+                                isUnlocked={unlockedManagers[key]}
+                                money={money}
                                 managerConfig={managersConfig[key]} 
+
+                                // methods
+                                updateMoney={updateMoney}
+                                unlockManager={() => unlockManager(key)}
                                 />
                         })
                     }
@@ -87,7 +67,4 @@ function ManagerModal(props) { //show, handleClose) => (
     )
 }
 
-export default connect(
-    mapStateToProps, 
-    mapDispatchToProps
-)(ManagerModal); 
+export default withManagers(ManagerModal); 

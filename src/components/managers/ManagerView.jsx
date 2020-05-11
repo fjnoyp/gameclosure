@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Alert, Button, ListGroup } from 'react-bootstrap'; 
+import { Button, ListGroup } from 'react-bootstrap'; 
+
+import withManagerFunc from '../../functions/managers/withManagerFunc'; 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -20,10 +22,14 @@ const midStyle = {
 }
 
 
-export default function ManagerView(props) {
+function ManagerView(props) {
 
-    const { isUnlocked, canBuy, onHireClick, managerConfig } = props; 
+    const { isUnlocked, money, onHireClick, managerConfig } = props; 
     const { name, description, faIcon, cost } = managerConfig; 
+
+    //console.log(managerConfig); 
+    
+    const canBuy = (money >= cost); 
   
   return(
     <ListGroup.Item>
@@ -66,3 +72,5 @@ export default function ManagerView(props) {
 
           
 }
+
+export default withManagerFunc(ManagerView); 

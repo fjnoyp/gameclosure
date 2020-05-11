@@ -1,21 +1,17 @@
 
-import React from 'react';
-import { ListGroup, Button, Modal } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
 
-import { offlineTime, offlineIncome } from '../features/gameState/businessesSlice'; 
-
-import { connect } from 'react-redux';
+import { offlineTime, offlineIncome } from '../functions/state/globalStateStorageManager'; 
 
 
 
 export default function MoneyGainedModal(props) { //show, handleClose) => (
-
-
     const { handleClose } = props; 
 
-    if(offlineTime < 10) handleClose(); 
-
-
+    useEffect(() => {
+        if(offlineTime < 10 || offlineIncome < 1) handleClose();     
+    }); 
 
     return (
         <Modal 

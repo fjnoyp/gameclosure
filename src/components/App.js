@@ -1,15 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'; 
 
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
-import BusinessesGrid from './BusinessesGrid.jsx'; 
+import BusinessesGrid from './businesses/BusinessesGrid.jsx'; 
 import MoneyView from './MoneyView.jsx'; 
 
-import ManagerModal from './ManagerModal.jsx'; 
+import ManagerModal from './managers/ManagerModal.jsx'; 
 import MoneyGainedModal from './MoneyGainedModal.jsx'; 
 
-import { store } from '../features/gameState/businessesSlice'
+import { store } from '../functions/state/globalStateManager'
 
 import { Provider } from 'react-redux'
 

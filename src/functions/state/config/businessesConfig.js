@@ -27,14 +27,14 @@ export default {
         faIcon: faLemon, 
         startIncome: 1, 
         upgradeIncome: 1, 
-        delay: 1,    
+        delay: 2,    
     },
     NewsBusiness: {
         name: "Newspaper",
         faIcon: faNewspaper, 
         startIncome: 10, 
         upgradeIncome: 4, 
-        delay: 2,
+        delay: 4,
     },
     CarWashBusiness: {
         name: "CarWash",

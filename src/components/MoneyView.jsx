@@ -7,14 +7,16 @@ const mapStateToProps = (state) => {
     }
 }
 
+function MoneyView(props) {
+    const { money } = props; 
+
+
+    return(
+        <h2> $ {money.toFixed(2)} </h2>   
+    )
+}
+
 export default connect(
     mapStateToProps
-)( ({money}) => 
-(
-
-    <h2> $ {money.toFixed(2)} </h2> 
-          
-)
-)
-  
+)(MoneyView); 
   

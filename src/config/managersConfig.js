@@ -1,7 +1,6 @@
 
 // Custom Imports 
 import businessesConfig from './businessesConfig.js'; 
-import formatMoney from '../functions/helper/formatMoney.js';
 
 var managersConfig = {}; 
 

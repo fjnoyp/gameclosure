@@ -129,7 +129,7 @@ Several tradeoffs and future steps were mentioned in the sections above.  Below 
 
 - The general UI can be made clearer, the total money display at the top should be larger or be prefaced with "balance: $...."  I decided to keep it that way to ensure that mobile devices wouldn't run out of horizontal space when displaying this. 
 
-- The "Collect" and "Upgrade" buttons in a BusinessView should be vertically centered.  This would require more css styling (a simple vertical-align: center wouldn't suffice here)
+- The content in the Cards displaying an individual business should be vertically centered.  This would require more css styling (a simple vertical-align: center wouldn't suffice here)
 
 
 I wrote these TradeOffs from about 20 minutes of analysis.  If I had more time I'm sure I'd find more ways to improve this :) 

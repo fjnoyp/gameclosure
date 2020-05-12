@@ -133,3 +133,7 @@ Several tradeoffs and future steps were mentioned in the sections above.  Below 
 
 
 I wrote these TradeOffs from about 20 minutes of analysis.  If I had more time I'm sure I'd find more ways to improve this :) 
+
+- On Android, if the web page is backgrounded in a web browser but not closed, no income is made.  This is because the onWindow closed event isn't triggered.  I would need to add code listening to check if the app was backgrounded and to calculate time passed when the web page is foregrounded again.  
+
+- On iPad the 'local-storage' system doesn't seem to work.  This means no state is being stored so the game progress is lost if the user refreshes the web page.  This appears to be an iOS specific problem that requires more investigation on that specific platform.  
